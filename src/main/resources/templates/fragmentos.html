@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <!-- fragmento com o javascript e o css do bootstrap -->
 
     <th:block th:fragment="bootstrap">
-
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <!-- <link href="../static/css/datatables.min.css" rel="stylesheet"> -->
+        <link href="https://cdn.datatables.net/v/dt/dt-1.13.7/datatables.min.css" rel="stylesheet">
+        <link href="../static/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+        <script src="../static/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/js/jquery-3.7.1.min.js"></script>
+        <script src="../static/js/jquery.dataTables.min.js"></script>
+        <script>
+            // Carregue o tema selecionado do armazenamento local
+            document.addEventListener('DOMContentLoaded', function() {
+                const html = document.querySelector('html');
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    html.dataset.bsTheme = savedTheme;
+                    updateThemeButton(savedTheme);
+                }
+            });
+    
+            function toggleTheme() {
+                const html = document.querySelector('html');
+                const currentTheme = html.dataset.bsTheme;
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.dataset.bsTheme = newTheme;
+                updateThemeButton(newTheme);
+                // Salve o tema selecionado no armazenamento local
+                localStorage.setItem('theme', newTheme);
+            }
+    
+            function updateThemeButton(theme) {
+                const themeButton = document.getElementById('themeButton');
+                if (theme === 'dark') {
+                    themeButton.textContent = 'Light';
+                    themeButton.classList.remove('btn-dark');
+                    themeButton.classList.add('btn-light');
+                } else {
+                    themeButton.textContent = 'Dark';
+                    themeButton.classList.remove('btn-light');
+                    themeButton.classList.add('btn-dark');
+                }
+            }
+        </script>
+        
+    </th:block>
 </head>
 <!-- Outros scripts -->
-</th:block>
 </head>
 
 <body>
@@ -28,9 +69,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -55,9 +94,9 @@
                                 Estoque
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Lista do Estoque</a></li>
+                                <li><a class="dropdown-item" href="/equipamento/listar-modelo-equipamento">Lista do Estoque</a></li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Saída de Equipamento</a>
+                                    <a class="dropdown-item" href="/equipamento/cadastrar">Saída de Equipamento</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider" />
@@ -67,17 +106,37 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Modelo de Equipamento
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/equipamento/listar-modelo-equipamento">Listar Modelos de Equipamentos</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/equipamento/cadastrar-modelo-equipamento">Cadastrar Modelo de Equipamento</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Em construção</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
+                    <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Procurar Equipamento"
                             aria-label="Search" />
                         <button class="btn btn-outline-success" type="submit">
                             Procurar
                         </button>
-                    </form>
+                    </form> -->
+                    <button type="button" onclick="toggleTheme()" id="themeButton" class="btn btn-dark">Dark</button>
                 </div>
             </div>
         </nav>
