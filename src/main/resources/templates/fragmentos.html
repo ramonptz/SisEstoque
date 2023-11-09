@@ -54,10 +54,8 @@
 </head>
 
 <body>
-    <header th:fragment="cabecalho">
         <!-- fragmento do cabeçalho que irá na maioria das páginas -->
-
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <header th:fragment="cabecalho" class="navbar sticky-top navbar-expand-lg bg-body-tertiary nav-underline">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">SIS Estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -66,12 +64,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <li class="nav-item" >
+                            <a class="nav-link " th:classappend="${#httpServletRequest.requestURI == '/' ? 'active' : ''}" aria-current="page" href="/">Home</a>
+                            <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
                         </li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Pessoal
                             </a>
@@ -89,7 +88,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle " th:classappend="${#httpServletRequest.requestURI == '/equipamento' ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Estoque
                             </a>
@@ -107,12 +106,12 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/equipamento') ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Modelo de Equipamento
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/equipamento/listar-modelo-equipamento">Listar Modelos de Equipamentos</a></li>
+                                <li><a class="dropdown-item show" href="/equipamento/listar-modelo-equipamento">Listar Modelos de Equipamentos</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -139,8 +138,7 @@
                     <button type="button" onclick="toggleTheme()" id="themeButton" class="btn btn-dark">Dark</button>
                 </div>
             </div>
-        </nav>
-    </header>
+        </header>
 </body>
 
 </html>
