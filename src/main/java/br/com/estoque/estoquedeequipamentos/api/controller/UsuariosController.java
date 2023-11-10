@@ -9,33 +9,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.model.Usuario;
 import br.com.estoque.estoquedeequipamentos.api.repository.ModeloEquipamentoRepository;
+import br.com.estoque.estoquedeequipamentos.api.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("equipamento")
-public class EquipamentoController {
-    private ModeloEquipamentoRepository repository;
+@RequestMapping("usuario")
+public class UsuariosController {
+    private UsuarioRepository usuarioRepository;
 
-
-    @GetMapping("listar-modelo-equipamento")
+    @GetMapping("listar-usuarios")
     public ModelAndView listarModeloEquipamento(){
-        ModelAndView mv = new ModelAndView("listar-modelo-equipamento");
-        List<ModeloEquipamento> equipamento = repository.findAll();
+        ModelAndView mv = new ModelAndView("listar-usuarios");
+        List<Usuario> usuarios = usuarioRepository.findAll();
         //passar objeto
-        mv.addObject("equipamentos", equipamento);
+        mv.addObject("usuarios", usuarios);
         return mv;
     }
 
-    @GetMapping("/cadastrar-modelo-equipamento")
-    public String cadastrar(ModeloEquipamento modeloEquipamento){
-        return "cadastrar-modelo-equipamento";
+    @GetMapping("/cadastrar-usuario")
+    public String cadastrar(Usuario usuario){
+        return "cadastrar-usuario";
     }
 
     @PostMapping("/cadastrar")
-    public String cadastro(ModeloEquipamento modeloEquipamento){
-        repository.save(modeloEquipamento);
-        return "redirect:listar-modelo-equipamento";
+    public String cadastro(Usuario usuario){
+        usuarioRepository.save(usuario);
+        return "redirect:listar-usuarios";
     }
 }
