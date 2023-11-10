@@ -37,15 +37,17 @@
             function updateThemeButton(theme) {
                 const themeButton = document.getElementById('themeButton');
                 if (theme === 'dark') {
-                    themeButton.textContent = 'Light';
+                    themeButton.textContent = 'TEMA Light';
                     themeButton.classList.remove('btn-dark');
                     themeButton.classList.add('btn-light');
                 } else {
-                    themeButton.textContent = 'Dark';
+                    themeButton.textContent = 'TEMA Dark';
                     themeButton.classList.remove('btn-light');
                     themeButton.classList.add('btn-dark');
                 }
             }
+
+          
         </script>
         
     </th:block>
@@ -55,30 +57,37 @@
 
 <body>
         <!-- fragmento do cabeçalho que irá na maioria das páginas -->
-        <header th:fragment="cabecalho" class="navbar sticky-top navbar-expand-lg bg-body-tertiary nav-underline">
+        <header th:fragment="cabecalho"  class="navbar sticky-top navbar-expand-lg nav-underline bg-primary-subtle mb-3 "  >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">SIS Estoque</a>
+                <a class="navbar-brand" href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-wrench-adjustable-circle" viewBox="0 0 16 16">
+                        <path d="M12.496 8a4.491 4.491 0 0 1-1.703 3.526L9.497 8.5l2.959-1.11c.027.2.04.403.04.61Z"/>
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1 0a7 7 0 1 0-13.202 3.249l1.988-1.657a4.5 4.5 0 0 1 7.537-4.623L7.497 6.5l1 2.5 1.333 3.11c-.56.251-1.18.39-1.833.39a4.49 4.49 0 0 1-1.592-.29L4.747 14.2A7 7 0 0 0 15 8Zm-8.295.139a.25.25 0 0 0-.288-.376l-1.5.5.159.474.808-.27-.595.894a.25.25 0 0 0 .287.376l.808-.27-.595.894a.25.25 0 0 0 .287.376l1.5-.5-.159-.474-.808.27.596-.894a.25.25 0 0 0-.288-.376l-.808.27.596-.894Z"/>
+                      </svg>
+                      SIS Estoque
+                      
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
-                        <li class="nav-item" >
+                        <li class="nav-item me-2" >
                             <a class="nav-link " th:classappend="${#httpServletRequest.requestURI == '/' ? 'active' : ''}" aria-current="page" href="/">Home</a>
                             <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
                         </li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link me-2  dropdown-toggle" th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/usuario') ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Pessoal
+                                Usuarios
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Lista Pessoal</a></li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Cadastrar Pessoa</a>
+                                    <a class="dropdown-item" href="/usuario/cadastrar-usuario">Cadastrar Usuarios</a>
                                 </li>
+                                <li><a class="dropdown-item" href="/usuario/listar-usuarios">Lista Usuarios</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -88,7 +97,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " th:classappend="${#httpServletRequest.requestURI == '/equipamento' ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link me-2 dropdown-toggle " th:classappend="${#httpServletRequest.requestURI == '/equipamento' ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Estoque
                             </a>
@@ -101,17 +110,17 @@
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Entrada De Equipamento</a>
+                                    <a class="dropdown-item me-2" href="#">Entrada De Equipamento</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/equipamento') ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link me-2 dropdown-toggle" th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/equipamento') ? 'active' : ''}" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Modelo de Equipamento
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item show" href="/equipamento/listar-modelo-equipamento">Listar Modelos de Equipamentos</a></li>
+                                <li><a class="dropdown-item" href="/equipamento/listar-modelo-equipamento">Listar Modelos de Equipamentos</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -125,7 +134,7 @@
                             <a class="nav-link" href="#">Link</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Em construção</a>
+                            <a class="nav-link me-2 disabled" aria-disabled="true">Em construção</a>
                         </li>
                     </ul>
                     <!-- <form class="d-flex" role="search">
@@ -135,6 +144,10 @@
                             Procurar
                         </button>
                     </form> -->
+                    <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2">Login</button>
+                        <button type="button" class="btn btn-warning me-2">Sign-up</button>
+                    </div>
                     <button type="button" onclick="toggleTheme()" id="themeButton" class="btn btn-dark">Dark</button>
                 </div>
             </div>
