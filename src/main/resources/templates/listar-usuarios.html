@@ -56,7 +56,6 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Tem certeza que deseja editar o usuário :<span class="fw-bold" th:text="${usuario.primeiroNome}">nome do usuario</span>
                                             <span class="fw-bold" th:text="${usuario.sobrenome}">nome do usuario</span> será permanentemente alterado !
                                         </div>
                                         <div class="modal-footer">
@@ -72,9 +71,9 @@
                         <td>
                             <!-- <a class="btn btn-danger btn-sm align-middle" th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Excluir</a> -->
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop2">
-                                Launch static backdrop modal
+                                Apagar usuário
                             </button>
 
                             <!-- Modal -->

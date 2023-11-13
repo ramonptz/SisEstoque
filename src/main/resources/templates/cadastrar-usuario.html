@@ -19,7 +19,7 @@
 
         <form th:object="${usuario}" class="row g-3 needs-validation was-validated" method="POST"
             action="/usuario/cadastrar">
-            <input type="hidden" th:field="*{id}" th:value="${usuario.id}" disabled>
+            <input type="hidden" th:field="*{id}" th:value="${usuario.id}">
             <div class="col-md-4">
                 <label for="validationServer01" class="form-label">Primeiro nome</label>
                 <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
