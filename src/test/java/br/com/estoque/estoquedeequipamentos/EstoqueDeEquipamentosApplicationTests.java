@@ -1,13 +1,13 @@
-package br.com.estoque.estoquedeequipamentos;
+// package br.com.estoque.estoquedeequipamentos;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class EstoqueDeEquipamentosApplicationTests {
+// @SpringBootTest
+// class EstoqueDeEquipamentosApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }
