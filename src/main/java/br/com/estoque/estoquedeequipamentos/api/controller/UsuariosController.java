@@ -58,7 +58,7 @@ public class UsuariosController {
 
     @GetMapping("/editar-usuario")
     public ModelAndView editarUsuario(@RequestParam(required = true) Long id){
-        ModelAndView mv = new ModelAndView("/cadastrar-usuario");
+        ModelAndView mv = new ModelAndView("cadastrar-usuario");
         // Usuario usuarioLocalizado = usuarioRepository.getReferenceById(id);
         mv.addObject("usuario", usuarioRepository.getReferenceById(id));
         return mv;
