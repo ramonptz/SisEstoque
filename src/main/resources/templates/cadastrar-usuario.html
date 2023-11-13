@@ -16,39 +16,45 @@
 
 
     <div class="col-sm-9 mx-auto d-block">
-        <form class="row g-3" method="POST" action="/usuario/cadastrar">
+
+        <form th:object="${usuario}" class="row g-3 needs-validation was-validated" method="POST"
+            action="/usuario/cadastrar">
+            <input type="hidden" th:field="*{id}" th:value="${usuario.id}" disabled>
             <div class="col-md-4">
                 <label for="validationServer01" class="form-label">Primeiro nome</label>
-                <input type="text" class="form-control is-valid" id="validationServer01" value="" name="primeiroNome"
-                    required>
+                <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
+                    th:field="*{primeiroNome}" required maxlength="15" minlength="3">
                 <div class="valid-feedback">
-                    Looks good!
+                    Este nome é válido!
                 </div>
+                <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors
+                    do nome do produto</div>
             </div>
             <div class="col-md-4">
                 <label for="validationServer02" class="form-label">Sobrenome</label>
-                <input type="text" class="form-control is-valid" id="validationServer02" value="" name="sobrenome"
-                    required>
+                <input type="text" class="form-control" id="validationServer02" value="" th:field="*{sobrenome}"
+                    required maxlength="15" minlength="3">
                 <div class="valid-feedback">
-                    Looks good!
+                    Este sobrenome é válido!
                 </div>
             </div>
             <div class="col-md-3">
                 <label for="validationServer04" class="form-label">Sexo</label>
-                <select class="form-select is-invalid" name="sexo" id="validationServer04"
+                <select class="form-select is-invalid" th:field="*{sexo}" id="validationServer04"
                     aria-describedby="validationServer04Feedback" required>
-                    <option selected disabled value="" title="Selecione uma opção">Escolha seu sexo</option>
-                    <option value="MASCULINO">MASCULINO</option>
-                    <option value="FEMININO">FEMININO</option>
-                    <option value="INDEFINIDO">INDEFINIDO</option>
+                    <option selected value="" title="Selecione uma opção">Escolha seu sexo</option>
+                    <option th:selected="${usuario.sexo == 'MASCULINO'}" value="MASCULINO">MASCULINO</option>
+                    <option th:selected="${usuario.sexo == 'FEMININO'}" value="FEMININO">FEMININO</option>
+                    <option th:selected="${usuario.sexo == 'INDEFINIDO'}" value="INDEFINIDO">INDEFINIDO</option>
                 </select>
             </div>
 
 
             <div class="col-md-6">
                 <label for="validationServer03" class="form-label">CPF</label>
-                <input type="text" class="form-control is-invalid" id="validationServer03"
-                    aria-describedby="validationServer03Feedback" name="cpf" maxlength="14" oninput="formatarCPF(this)">
+                <input type="text" placeholder="xxx.xxx.xxx-xx" class="form-control" id="validationServer03"
+                    aria-describedby="validationServer03Feedback" th:field="*{cpf}" maxlength="14" required
+                    minlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" oninput="formatarCPF(this)">
                 <div id="validationServer03Feedback" class="invalid-feedback">
                     Por favor, forneça um CPF válido.
                 </div>
@@ -60,9 +66,7 @@
                     <label class="form-check-label" for="invalidCheck3">
                         Eu tenho certeza que este usuário está sendo cadastrado corretamente!
                     </label>
-                    <div id="invalidCheck3Feedback" class="invalid-feedback">
-                        Você precisa ter certeza!
-                    </div>
+
                 </div>
             </div>
             <div class="col-12">
@@ -74,20 +78,18 @@
 
 
     <script>
+
         function formatarCPF(input) {
             // Remove caracteres não numéricos
             const cpf = input.value.replace(/\D/g, '');
-    
+
             // Verifica se o CPF possui 11 dígitos
             if (cpf.length === 11) {
                 // Formata o CPF
                 const cpfFormatado = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    
+
                 // Atualiza o valor do campo de entrada
                 input.value = cpfFormatado;
-            } else {
-                // Se o CPF não tiver 11 dígitos, remove a formatação
-                input.value = cpf;
             }
         }
     </script>

@@ -1,15 +1,15 @@
 package br.com.estoque.estoquedeequipamentos.api.model.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,17 +19,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ModeloEquipamento implements Serializable {
+public class Equipamento implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="modeloequipamento_sequence")
     @SequenceGenerator(name="modeloequipamento_sequence", sequenceName="modeloequipamento_sequence", allocationSize=100)
     private Long id;
-    private String nomeEquipamento;
-    private String sn;
-    private String lote;
-    @OneToMany(mappedBy = "modeloEquipamento", cascade = CascadeType.ALL)
-    private List<Equipamento> equipamento;
+    @ManyToOne
+    @JoinColumn(name = "modeloEquipamento_id")
+    private ModeloEquipamento modeloEquipamento;
+    private Usuario locatario;
+    private Historico historico;
+    private Boolean ativa;
 
+    // @ManyToOne(targetEntity = ModeloEquipamento.class, fetch = FetchType.LAZY)
+	// @JoinColumn(name = "ID_M_MODELO_EQUIPAMENTO", nullable = false)
+	// private ModeloEquipamento modeloEquipamento;
     
     
 }
