@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,16 +35,8 @@ public class UsuariosController {
 
     @GetMapping("/cadastrar-usuario")
     public ModelAndView cadastrar(Usuario usuario){
-        if(usuario.getId() == null){
-            System.out.println("ta vazio porraaaa");
-            System.out.println(usuario.getSexo());
         ModelAndView mv = new ModelAndView("cadastrar-usuario");
         return mv;
-        } else{
-        ModelAndView mv = new ModelAndView("cadastrar-usuario");
-        return mv;
-        }
-        // return "cadastrar-usuario";
     }
 
     @PostMapping("/cadastrar")
@@ -53,7 +47,7 @@ public class UsuariosController {
         }
 
         usuarioRepository.save(usuario);
-        return "redirect:listar-usuarios";
+        return "redirect:/usuario/listar-usuarios";
     }
 
     @GetMapping("/editar-usuario")
@@ -62,5 +56,11 @@ public class UsuariosController {
         // Usuario usuarioLocalizado = usuarioRepository.getReferenceById(id);
         mv.addObject("usuario", usuarioRepository.getReferenceById(id));
         return mv;
+    }
+
+    @DeleteMapping("/excluir/{id}")
+    public String excluirUsuario(@PathVariable(required = true) Long id){
+        usuarioRepository.deleteById(id);
+        return "redirect:/usuario/listar-usuarios";
     }
 }

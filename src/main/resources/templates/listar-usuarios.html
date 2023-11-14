@@ -40,12 +40,12 @@
                             <!-- <a class="btn btn-danger btn-sm align-middle" th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Excluir</a> -->
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
+                            th:data-bs-target="'#modal1-' + ${usuario.id}">
                                 Editar usuário
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                            <div class="modal fade" th:id="'modal1-' + ${usuario.id}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -73,12 +73,12 @@
                             <!-- <a class="btn btn-danger btn-sm align-middle" th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Excluir</a> -->
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop2">
+                            th:data-bs-target="'#modal2-' + ${usuario.id}">
                                 Apagar usuário
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static"
+                            <div class="modal fade" th:id="'modal2-' + ${usuario.id}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -96,8 +96,11 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-danger btn-sm align-middle"
-                                                th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Apagar</a>
+                                                <form th:action="@{'excluir/' + ${usuario.id}}" th:method="DELETE">
+                                                <button type="submit" class="btn btn-danger btn-sm align-middle">Apagar</button>
+                                            </form>
+                                            <!-- <a class="btn btn-danger btn-sm align-middle"
+                                                th:href="@{'excluir/' + ${usuario.id}}" role="button">Apagar</a> -->
                                         </div>
                                     </div>
                                 </div>
