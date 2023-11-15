@@ -25,11 +25,11 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr th:each="equipamento : ${equipamentos}">
-                        <td th:text="${equipamento.id}">...</td>
-                        <td th:text="${equipamento.nomeEquipamento}">...</td>
-                        <td th:text="${equipamento.sn}">...</td>
-                        <td th:text="${equipamento.lote}">...</td>
+                    <tr th:each="modeloDeEquipamento : ${modeloDeEquipamentos}">
+                        <td th:text="${modeloDeEquipamento.id}">...</td>
+                        <td th:text="${modeloDeEquipamento.nomeEquipamento}">...</td>
+                        <td th:text="${modeloDeEquipamento.sn}">...</td>
+                        <td th:text="${modeloDeEquipamento.lote}">...</td>
                     </tr>
                 </tbody>
                 <tfoot>

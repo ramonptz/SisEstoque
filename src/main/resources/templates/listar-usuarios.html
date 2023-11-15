@@ -18,22 +18,22 @@
             <table class="table table-responsive table-striped table-bordered text-center " id="tabela-equipamentos" style="width:100%">
                 <thead>
                     <tr>
+                        <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Nome</th>
                         <th class="text-center" scope="col">Sobrenome</th>
                         <th class="text-center" scope="col">CPF</th>
                         <th class="text-center" scope="col">Sexo</th>
-                        <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Editar</th>
                         <th class="text-center" scope="col">Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}" class="align-middle">...</td>
                         <td th:text="${usuario.primeiroNome}" class="align-middle">...</td>
                         <td th:text="${usuario.sobrenome}" class="align-middle">...</td>
                         <td th:text="${usuario.cpf}" class="align-middle">...</td>
                         <td th:text="${usuario.sexo}" class="align-middle">...</td>
-                        <td th:text="${usuario.id}" class="align-middle">...</td>
                         <td>
                             <!-- <a class="btn btn-primary btn-sm align-middle"
                                 th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Editar</a> -->
@@ -110,11 +110,11 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Nome</th>
                         <th class="text-center" scope="col">Sobrenome</th>
                         <th class="text-center" scope="col">CPF</th>
                         <th class="text-center" scope="col">Sexo</th>
-                        <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Editar</th>
                         <th class="text-center" scope="col">Excluir</th>
                     </tr>

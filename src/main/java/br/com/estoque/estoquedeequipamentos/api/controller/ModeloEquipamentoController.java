@@ -16,17 +16,17 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("equipamento")
-public class EquipamentoController {
+@RequestMapping("modelo-equipamento")
+public class ModeloEquipamentoController {
     private ModeloEquipamentoRepository repository;
 
 
     @GetMapping("listar-modelo-equipamento")
     public ModelAndView listarModeloEquipamento(){
         ModelAndView mv = new ModelAndView("listar-modelo-equipamento");
-        List<ModeloEquipamento> equipamento = repository.findAll();
+        List<ModeloEquipamento> modeloDeEquipamento = repository.findAll();
         //passar objeto
-        mv.addObject("equipamentos", equipamento);
+        mv.addObject("modeloDeEquipamentos", modeloDeEquipamento);
         return mv;
     }
 
