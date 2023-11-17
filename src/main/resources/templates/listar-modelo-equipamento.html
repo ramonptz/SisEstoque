@@ -20,7 +20,6 @@
                     <tr>
                         <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Equipamento</th>
-                        <th class="text-center" scope="col">Serial number</th>
                         <th class="text-center" scope="col">Lote</th>
                     </tr>
                 </thead>
@@ -28,7 +27,6 @@
                     <tr th:each="modeloDeEquipamento : ${modeloDeEquipamentos}">
                         <td th:text="${modeloDeEquipamento.id}">...</td>
                         <td th:text="${modeloDeEquipamento.nomeEquipamento}">...</td>
-                        <td th:text="${modeloDeEquipamento.sn}">...</td>
                         <td th:text="${modeloDeEquipamento.lote}">...</td>
                     </tr>
                 </tbody>
@@ -36,7 +34,6 @@
                     <tr>
                         <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Equipamento</th>
-                        <th class="text-center" scope="col">Serial number</th>
                         <th class="text-center" scope="col">Lote</th>
                     </tr>
                 </tfoot>

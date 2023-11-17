@@ -25,7 +25,6 @@ public class ModeloEquipamento implements Serializable {
     @SequenceGenerator(name="modeloequipamento_sequence", sequenceName="modeloequipamento_sequence", allocationSize=100)
     private Long id;
     private String nomeEquipamento;
-    private String sn;
     private String lote;
     @OneToMany(mappedBy = "modeloEquipamento", cascade = CascadeType.ALL)
     private List<Equipamento> equipamento;

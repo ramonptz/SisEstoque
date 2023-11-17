@@ -22,17 +22,20 @@ import lombok.NoArgsConstructor;
 @Data
 public class Equipamento implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="modeloequipamento_sequence")
-    @SequenceGenerator(name="modeloequipamento_sequence", sequenceName="modeloequipamento_sequence", allocationSize=100)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="equipamento_sequence")
+    @SequenceGenerator(name="equipamento_sequence", sequenceName="equipamento_sequence", allocationSize=100)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "modeloEquipamento_id")
     private ModeloEquipamento modeloEquipamento;
+
     @ManyToOne
     @JoinColumn(name="usuario_id")
     private Usuario locatario;
     // private Historico historico;
-    private Boolean ativa;
+    private Boolean ativa = true;
+    private String sn;
 
     // @ManyToOne(targetEntity = ModeloEquipamento.class, fetch = FetchType.LAZY)
 	// @JoinColumn(name = "ID_M_MODELO_EQUIPAMENTO", nullable = false)

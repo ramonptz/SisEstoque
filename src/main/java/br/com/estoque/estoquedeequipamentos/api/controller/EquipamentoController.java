@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.estoque.estoquedeequipamentos.api.model.model.Equipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
 import br.com.estoque.estoquedeequipamentos.api.repository.EquipamentoRepository;
+import br.com.estoque.estoquedeequipamentos.api.repository.ModeloEquipamentoRepository;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -21,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class EquipamentoController {
 
     private EquipamentoRepository repository;
-
+    private ModeloEquipamentoRepository modeloEquipamentoRepository;
     // @GetMapping("/123")
     // public String home(){
     // return "index";
@@ -31,6 +33,7 @@ public class EquipamentoController {
     public ModelAndView listarModeloEquipamento() {
         ModelAndView mv = new ModelAndView("listar-equipamento");
         List<Equipamento> equipamento = repository.findAll();
+        
         mv.addObject("equipamentos", equipamento);
         return mv;
     }
@@ -38,6 +41,8 @@ public class EquipamentoController {
     @GetMapping("/cadastrar-equipamento")
     public ModelAndView cadastrar(Equipamento equipamento) {
         ModelAndView mv = new ModelAndView("cadastrar-equipamento");
+        List<ModeloEquipamento> modeloEquipamento = modeloEquipamentoRepository.findAll();
+        mv.addObject("modeloEquipamentos", modeloEquipamento);
         return mv;
     }
 
