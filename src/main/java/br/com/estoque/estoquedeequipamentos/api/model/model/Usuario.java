@@ -1,17 +1,18 @@
 package br.com.estoque.estoquedeequipamentos.api.model.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import br.com.estoque.estoquedeequipamentos.api.enums.Sexo;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,9 @@ public class Usuario implements Serializable {
     private String cpf;
     private String nascimento;
     private String email;
+    private String telefone;
+    @OneToMany(mappedBy = "locatario", cascade = CascadeType.ALL)
+    private List<Equipamento> equipamento;
 
 
     

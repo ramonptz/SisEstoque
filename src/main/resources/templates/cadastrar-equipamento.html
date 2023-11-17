@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Modelo Equipamento</title>
+  <div th:replace="fragmentos :: bootstrap"></div>
+
+
+</head>
+
+<body>
+  <div th:replace="fragmentos :: cabecalho"></div>
+  <div class="col-sm-9 mx-auto d-block">
+    <h1>Pagina do cadastro de equipamento</h1>
+    <div th:if="${equipamento.id}">
+      <h1>Página para editar o usuários</h1>
+  </div>
+  <div th:unless="${equipamento.id}">
+      <h1>Página do cadastro de usuários</h1>
+  </div>
+
+  <form th:object="${equipamento}" class="row g-3 needs-validation was-validated" method="POST"
+      action="/equipamento/cadastrar">
+      <input type="hidden" th:field="*{id}" th:value="${equipamento.id}">
+      <div class="col-md-4">
+          <label for="validationServer01" class="form-label">Primeiro nome</label>
+          <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
+              th:field="*{primeiroNome}" required maxlength="15" minlength="3">
+          <div class="valid-feedback">
+              Este nome é válido!
+          </div>
+          <div id="validationServer01" class="invalid-feedback">
+              Por favor, insira um nome.
+          </div>
+          <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors do nome do produto</div>
+      </div>
+      <div class="col-md-4">
+          <label for="validationServer02" class="form-label">Sobrenome</label>
+          <input type="text" class="form-control" id="validationServer02" value="" th:field="*{sobrenome}"
+              required maxlength="15" minlength="3">
+          <div class="valid-feedback">
+              Este sobrenome é válido!
+          </div>
+          <div id="validationServer02" class="invalid-feedback">
+              Por favor, insira um sobrenome.
+          </div>
+      </div>
+      <div class="col-md-3">
+          <label for="validationServer04" class="form-label">Sexo</label>
+          <select class="form-select " th:field="*{sexo}" id="validationServer04"
+              aria-describedby="validationServer04Feedback" required>
+              <option selected value="" title="Selecione uma opção">Escolha seu sexo</option>
+              <option th:selected="${equipamento.sexo == 'MASCULINO'}" value="MASCULINO">MASCULINO</option>
+              <option th:selected="${equipamento.sexo == 'FEMININO'}" value="FEMININO">FEMININO</option>
+              <option th:selected="${equipamento.sexo == 'INDEFINIDO'}" value="INDEFINIDO">INDEFINIDO</option>
+          </select>
+          <div class="valid-feedback">
+              Este sobrenome é válido!
+          </div>
+          <div id="validationServer04" class="invalid-feedback">
+              Por favor, escolha um sexo.
+          </div>
+      </div>
+
+
+      <div class="col-md-6">
+          <label for="validationServer03" class="form-label">CPF</label>
+          <input type="text" placeholder="xxx.xxx.xxx-xx" class="form-control" id="validationServer03"
+              aria-describedby="validationServer03Feedback" th:field="*{cpf}" maxlength="14" required
+              minlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" oninput="formatarCPF(this)">
+          <div id="validationServer03Feedback" class="invalid-feedback">
+              Por favor, forneça um CPF válido.
+          </div>
+      </div>
+      <div class="col-12">
+          <div class="form-check">
+              <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"
+                  aria-describedby="invalidCheck3Feedback" required>
+              <label class="form-check-label" for="invalidCheck3">
+                  Eu tenho certeza que este usuário está sendo cadastrado corretamente!
+              </label>
+
+          </div>
+      </div>
+      <div class="col-12">
+          <button class="btn btn-primary" type="submit">Cadastrar Modelo de Equipamento</button>
+      </div>
+  </form>
+</div>
+  </div>
+  <div th:replace="fragmentos :: rodape"></div>
+</body>
+
+</html>

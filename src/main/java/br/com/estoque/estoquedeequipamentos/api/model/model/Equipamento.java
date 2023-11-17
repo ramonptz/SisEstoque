@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 
@@ -27,8 +28,10 @@ public class Equipamento implements Serializable {
     @ManyToOne
     @JoinColumn(name = "modeloEquipamento_id")
     private ModeloEquipamento modeloEquipamento;
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
     private Usuario locatario;
-    private Historico historico;
+    // private Historico historico;
     private Boolean ativa;
 
     // @ManyToOne(targetEntity = ModeloEquipamento.class, fetch = FetchType.LAZY)

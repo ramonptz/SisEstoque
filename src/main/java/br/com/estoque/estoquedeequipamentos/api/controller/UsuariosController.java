@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("usuario")
+@RequestMapping("/usuario")
 public class UsuariosController {
     private UsuarioRepository usuarioRepository;
 
