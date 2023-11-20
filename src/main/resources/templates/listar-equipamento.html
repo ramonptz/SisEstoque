@@ -26,14 +26,24 @@
                         <th class="text-center" scope="col">CPF</th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     <tr th:each="equipamento : ${equipamentos}">
                         <td th:text="${equipamento.id}">...</td>
                         <td th:text="${equipamento.modeloEquipamento.nomeEquipamento}">...</td>
                         <td th:text="${equipamento.ativa}">...</td>
                         <td th:text="${equipamento.modeloEquipamento.lote}">...</td>
-                        <td th:text="${equipamento.locatario.primeiroNome} + ' ' +${equipamento.locatario.sobrenome}">...</td>
-                        <td th:text="${equipamento.locatario.cpf}">...</td>
+                        <div th:if="${equipamento.locatario}">
+                            <td th:text="${equipamento.locatario.primeiroNome} + ' ' +${equipamento.locatario.sobrenome}">...</td>
+                        </div>
+                        <div th:unless="${equipamento.locatario}">
+                            <td>Equipamento não emprestado</td>
+                        </div>
+                        <div th:if="${equipamento.locatario}">
+                            <td th:text="${equipamento.locatario.cpf}">...</td>
+                        </div>
+                        <div th:unless="${equipamento.locatario}">
+                            <td>Equipamento não emprestado</td>
+                        </div>
                     </tr>
                 </tbody>
                 <tfoot>

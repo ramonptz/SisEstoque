@@ -41,8 +41,8 @@ public class EquipamentoController {
     @GetMapping("/cadastrar-equipamento")
     public ModelAndView cadastrar(Equipamento equipamento) {
         ModelAndView mv = new ModelAndView("cadastrar-equipamento");
-        List<ModeloEquipamento> modeloEquipamento = modeloEquipamentoRepository.findAll();
-        mv.addObject("modeloEquipamentos", modeloEquipamento);
+        List<ModeloEquipamento> modeloDeEquipamento = modeloEquipamentoRepository.findAll();
+        mv.addObject("modeloDeEquipamentos", modeloDeEquipamento);
         return mv;
     }
 

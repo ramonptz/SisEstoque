@@ -21,6 +21,7 @@
                         <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Equipamento</th>
                         <th class="text-center" scope="col">Lote</th>
+                        <th class="text-center" scope="col">Preço</th>
                     </tr>
                 </thead>
                 <tbody >
@@ -28,6 +29,7 @@
                         <td th:text="${modeloDeEquipamento.id}">...</td>
                         <td th:text="${modeloDeEquipamento.nomeEquipamento}">...</td>
                         <td th:text="${modeloDeEquipamento.lote}">...</td>
+                        <td th:text="${modeloDeEquipamento.preco}" th:data-valor="${modeloDeEquipamento.preco}">...</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -35,6 +37,7 @@
                         <th class="text-center" scope="col">ID</th>
                         <th class="text-center" scope="col">Equipamento</th>
                         <th class="text-center" scope="col">Lote</th>
+                        <th class="text-center" scope="col">Preço</th>
                     </tr>
                 </tfoot>
             </table>
@@ -44,6 +47,26 @@
 
     <script>
         new DataTable('#tabela-equipamentos');
+        
+    document.addEventListener('DOMContentLoaded', function() {
+        const elementos = document.querySelectorAll('[data-valor]');
+
+        elementos.forEach(function(elemento) {
+            const valor = elemento.getAttribute('data-valor');
+            if (valor !== null) {
+                elemento.innerText = formatarNumero(parseFloat(valor)); // Convertendo para float
+            }
+        });
+    });
+
+    function formatarNumero(valor) {
+        if (!isNaN(valor)) {
+            const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            return formatter.format(valor);
+        }
+        return ''; // Retorna vazio se o valor não for um número
+    }
+
     </script>
 
 </body>

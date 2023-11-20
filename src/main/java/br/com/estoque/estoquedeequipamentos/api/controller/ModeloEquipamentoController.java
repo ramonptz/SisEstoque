@@ -2,7 +2,10 @@ package br.com.estoque.estoquedeequipamentos.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.model.Usuario;
 import br.com.estoque.estoquedeequipamentos.api.repository.ModeloEquipamentoRepository;
 import lombok.AllArgsConstructor;
 
@@ -35,8 +39,15 @@ public class ModeloEquipamentoController {
         return "cadastrar-modelo-equipamento";
     }
 
+
     @PostMapping("/cadastrar")
-    public String cadastro(ModeloEquipamento modeloEquipamento){
+    public String cadastro(@Valid ModeloEquipamento modeloEquipamento, BindingResult resultado){
+        System.out.println(modeloEquipamento.getPreco());
+
+        if(resultado.hasErrors()) {
+            return "cadastrar-modelo-equipamento";
+        }
+
         repository.save(modeloEquipamento);
         return "redirect:listar-modelo-equipamento";
     }

@@ -6,69 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Modelo Equipamento</title>
     <div th:replace="fragmentos :: bootstrap"></div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 
 </head>
 
 <body>
     <div th:replace="fragmentos :: cabecalho"></div>
     <h1>Pagina do cadastro de equipamento</h1>
-    
+
 
     <div class="col-sm-9 mx-auto d-block">
-        <form class="row g-3" method="POST" action="/modelo-equipamento/cadastrar">
+        <form th:object="${modeloEquipamento}" class="row g-3 needs-validation was-validated" method="POST" id="01"
+            action="/modelo-equipamento/cadastrar" required>
             <div class="col-md-4">
-                <label for="validationServer01" class="form-label">Nome do Equipamento</label>
-                <input type="text" class="form-control is-valid" id="validationServer01" value="" name="nomeEquipamento" required>
+                <label for="validationServer01" class="form-label">Nome do Modelo do Equipamento</label>
+                <input type="text" class="form-control" id="validationServer01" value="" th:field="*{nomeEquipamento}" required>
                 <div class="valid-feedback">
-                    Looks good!
+                    Nome válido!
+                </div>
+                <div id="validationServer01" class="invalid-feedback">
+                    Por favor, insira o nome do Modelo.
                 </div>
             </div>
-            <!-- <div class="col-md-4">
-                <label for="validationServer02" class="form-label">Serial Number</label>
-                <input type="text" class="form-control is-valid" id="validationServer02" value="" name="sn" required>
+            <div class="col-md-4">
+                <label for="validationServer02" class="form-label">Part Number</label>
+                <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer02" value=""
+                    th:field="*{pn}" required>
                 <div class="valid-feedback">
-                    Looks good!
+                    pn válido!
                 </div>
-            </div> -->
-            <!-- <div class="col-md-4">
-                <label for="validationServerUsername" class="form-label">Username</label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                    <input type="text" class="form-control is-invalid" id="validationServerUsername"
-                        aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                        Please choose a username.
-                    </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, insira um PN válido.
                 </div>
-            </div> -->
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label">Preço</label>
+                <input th:errorclass="is-invalid"  placeholder="R$0,00" type="text" class="form-control" id="validationServer03" value=""
+                    th:field="*{preco}"  required>
+                <div class="valid-feedback">
+                    Preço válido!
+                </div>
+                <div id="validationServer03" class="invalid-feedback">
+                    Por favor, insira um nome.
+                </div>
+            </div>
             <div class="col-md-6">
-                <label for="validationServer03" class="form-label">lote</label>
+                <label for="validationServer04" class="form-label">lote</label>
                 <input type="text" class="form-control is-invalid" id="validationServer03"
                     aria-describedby="validationServer03Feedback" name="lote" required>
-                <div id="validationServer03Feedback" class="invalid-feedback">
+                <div id="validationServer04Feedback" class="invalid-feedback">
                     Por favor providencie um lote válido.
                 </div>
             </div>
-            <!-- <div class="col-md-3">
-                <label for="validationServer04" class="form-label">State</label>
-                <select class="form-select is-invalid" id="validationServer04"
-                    aria-describedby="validationServer04Feedback" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                </select>
-                <div id="validationServer04Feedback" class="invalid-feedback">
-                    Please select a valid state.
-                </div>
-            </div> -->
-            <!-- <div class="col-md-3">
-                <label for="validationServer05" class="form-label">Zip</label>
-                <input type="text" class="form-control is-invalid" id="validationServer05"
-                    aria-describedby="validationServer05Feedback" required>
-                <div id="validationServer05Feedback" class="invalid-feedback">
-                    Please provide a valid zip.
-                </div>
-            </div> -->
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"
@@ -87,24 +77,36 @@
         </form>
     </div>
 
-    
+
 
     <script>
-        // function toggleTheme() {
-        //     const html = document.querySelector('html');
-        //     const themeButton = document.getElementById('themeButton');
-        //     if (html.dataset.bsTheme === 'dark') {
-        //         html.dataset.bsTheme = 'light';
-        //         themeButton.textContent = 'Dark';
-        //         themeButton.classList.remove('btn-light');
-        //         themeButton.classList.add('btn-dark');
-        //     } else {
-        //         html.dataset.bsTheme = 'dark';
-        //         themeButton.textContent = 'Light';
-        //         themeButton.classList.remove('btn-dark');
-        //         themeButton.classList.add('btn-light');
-        //     }
-        // }
+
+$(document).ready(function() {
+        $('#validationServer03').maskMoney({
+            prefix: 'R$', // Prefixo (pode ser vazio, R$, etc.)
+            allowNegative: false, // Não permite valores negativos
+            thousands: '.', // Separador de milhares
+            decimal: ',', // Separador decimal
+            affixesStay: false // Remove o prefixo/sufixo quando o campo perde o foco
+        });
+
+        document.getElementById('01').addEventListener('submit', function(e) {
+            // Obtém o valor formatado pelo maskMoney
+            let valorFormatado = $('#validationServer03').val();
+            
+            // Remove todos os separadores de milhares
+            let valorSemMilhares = valorFormatado.replace(/\./g, '');
+            
+            // Substitui vírgula por ponto (para ter o formato esperado pelo back-end)
+            let valor = valorSemMilhares.replace(',', '.');
+            
+            // Atualiza o valor do campo com o valor sem separadores de milhares antes de enviar o formulário
+            $('#validationServer03').val(valor);
+
+            // Se quiser, você pode imprimir o valor a ser enviado para o back-end
+            console.log(valor);
+        });
+    });
     </script>
 
 </body>

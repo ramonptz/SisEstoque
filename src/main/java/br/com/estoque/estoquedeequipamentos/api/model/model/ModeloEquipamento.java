@@ -28,6 +28,8 @@ public class ModeloEquipamento implements Serializable {
     private String lote;
     @OneToMany(mappedBy = "modeloEquipamento", cascade = CascadeType.ALL)
     private List<Equipamento> equipamento;
+    private String pn;
+    private Double preco;
 
     
     
