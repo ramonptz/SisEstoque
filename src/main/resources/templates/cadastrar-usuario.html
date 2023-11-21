@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html  lang="pt-br" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
     <div th:replace="fragmentos :: bootstrap"></div>
+    
 
 
 </head>
 
-<body >
+<body>
     <div th:replace="fragmentos :: cabecalho"></div>
 
 
@@ -25,13 +26,25 @@
             <h1>Página do cadastro de usuários</h1>
         </div>
 
-        <form th:object="${usuario}" class="row g-3 needs-validation was-validated" method="POST"
+        <form th:object="${usuario}" id="form" class="row g-3 needs-validation was-validated" method="POST"
             action="/usuario/cadastrar">
             <input type="hidden" th:field="*{id}" th:value="${usuario.id}">
             <div class="col-md-4">
                 <label for="validationServer01" class="form-label">Primeiro nome</label>
                 <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
                     th:field="*{primeiroNome}" required maxlength="15" minlength="3">
+                <div class="valid-feedback">
+                    Este nome é válido!
+                </div>
+                <div id="validationServer01" class="invalid-feedback">
+                    Por favor, insira um nome.
+                </div>
+                <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors do nome do produto</div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer09" class="form-label">Nascimento</label>
+                <input th:errorclass="is-invalid" type="date" value="" class="form-control" id="validationServer09"
+                    th:field="*{nascimento}" required maxlength="15" minlength="3">
                 <div class="valid-feedback">
                     Este nome é válido!
                 </div>
@@ -95,7 +108,7 @@
     </div>
 
     <!-- <div class="footer mt-auto py-3"> -->
-            <div th:replace="fragmentos :: rodape"></div>
+    <div th:replace="fragmentos :: rodape"></div>
     <!-- </div> -->
 
     <script>
@@ -113,6 +126,7 @@
                 input.value = cpfFormatado;
             }
         }
+
     </script>
 
 </body>

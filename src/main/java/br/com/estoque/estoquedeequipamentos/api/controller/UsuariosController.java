@@ -41,11 +41,12 @@ public class UsuariosController {
 
     @PostMapping("/cadastrar")
     public String cadastro(@Valid Usuario usuario, BindingResult resultado){
-
+        
         if(resultado.hasErrors()) {
             return "cadastrar-usuario";
         }
-
+        
+        System.out.println("teste de cadastro:" + usuario.getNascimento());
         usuarioRepository.save(usuario);
         return "redirect:/usuario/listar-usuarios";
     }
