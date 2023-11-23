@@ -22,8 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Equipamento implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="equipamento_sequence")
-    @SequenceGenerator(name="equipamento_sequence", sequenceName="equipamento_sequence", allocationSize=100)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

@@ -41,18 +41,7 @@
                 </div>
                 <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors do nome do produto</div>
             </div>
-            <div class="col-md-4">
-                <label for="validationServer09" class="form-label">Nascimento</label>
-                <input th:errorclass="is-invalid" type="date" value="" class="form-control" id="validationServer09"
-                    th:field="*{nascimento}" required maxlength="15" minlength="3">
-                <div class="valid-feedback">
-                    Este nome é válido!
-                </div>
-                <div id="validationServer01" class="invalid-feedback">
-                    Por favor, insira um nome.
-                </div>
-                <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors do nome do produto</div>
-            </div>
+            
             <div class="col-md-4">
                 <label for="validationServer02" class="form-label">Sobrenome</label>
                 <input type="text" class="form-control" id="validationServer02" value="" th:field="*{sobrenome}"
@@ -63,6 +52,18 @@
                 <div id="validationServer02" class="invalid-feedback">
                     Por favor, insira um sobrenome.
                 </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer09" class="form-label">Nascimento</label>
+                <input th:errorclass="is-invalid" type="date" value="" class="form-control" id="validationServer09"
+                    th:field="*{nascimento}" required maxlength="15" minlength="3">
+                <div class="valid-feedback">
+                    Esta data é válida!
+                </div>
+                <div id="validationServer01" class="invalid-feedback">
+                    Por favor, insira uma data de nascimento.
+                </div>
+                <div class="invalid-feedback" th:errors="*{primeiroNome}">Errors do nome do produto</div>
             </div>
             <div class="col-md-3">
                 <label for="validationServer04" class="form-label">Sexo</label>
@@ -82,13 +83,16 @@
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <label for="validationServer03" class="form-label">CPF</label>
                 <input type="text" placeholder="xxx.xxx.xxx-xx" class="form-control" id="validationServer03"
                     aria-describedby="validationServer03Feedback" th:field="*{cpf}" maxlength="14" required
                     minlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" oninput="formatarCPF(this)">
                 <div id="validationServer03Feedback" class="invalid-feedback">
                     Por favor, forneça um CPF válido.
+                </div>
+                <div class="valid-feedback">
+                    Este CPF é válido!
                 </div>
             </div>
             <div class="col-12">

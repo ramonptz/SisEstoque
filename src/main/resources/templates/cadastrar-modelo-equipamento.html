@@ -6,17 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Modelo Equipamento</title>
     <div th:replace="fragmentos :: bootstrap"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 
 </head>
 
 <body>
     <div th:replace="fragmentos :: cabecalho"></div>
-    <h1>Pagina do cadastro de equipamento</h1>
-
-
+    
+    
     <div class="col-sm-9 mx-auto d-block">
+        <h1>Pagina do cadastro de equipamento</h1>
+        <br>
         <form th:object="${modeloEquipamento}" class="row g-3 needs-validation was-validated" method="POST" id="01"
             action="/modelo-equipamento/cadastrar" required>
             <div class="col-md-4">
@@ -48,23 +47,25 @@
                     Preço válido!
                 </div>
                 <div id="validationServer03" class="invalid-feedback">
-                    Por favor, insira um nome.
+                    Por favor, insira um valor válido. (Ex.:R$ 50,50)
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationServer04" class="form-label">lote</label>
-                <input type="text" class="form-control is-invalid" id="validationServer03"
-                    aria-describedby="validationServer03Feedback" name="lote" required>
+                <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="*{lote}" required>
+                    <div class="valid-feedback">
+                        Lote válido!
+                    </div>
                 <div id="validationServer04Feedback" class="invalid-feedback">
                     Por favor providencie um lote válido.
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck3"
                         aria-describedby="invalidCheck3Feedback" required>
                     <label class="form-check-label" for="invalidCheck3">
-                        Eu tenho certeza que este equipamento está sendo cadastrado corretamente!
+                        Eu tenho certeza que este Modelo De Equipamento está sendo cadastrado corretamente!
                     </label>
                     <div id="invalidCheck3Feedback" class="invalid-feedback">
                         Você precisa ter certeza!

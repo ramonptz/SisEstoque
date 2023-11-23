@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
@@ -51,6 +52,8 @@ public class ModeloEquipamentoController {
         repository.save(modeloEquipamento);
         return "redirect:listar-modelo-equipamento";
     }
+
+    
 
     // @DeleteMapping("/excluir/{id}")
     // public String excluirUsuario(@PathVariable("id") Long id){

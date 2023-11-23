@@ -23,8 +23,6 @@
                         <th class="text-center align-middle" scope="col">Part number</th>
                         <th class="text-center align-middle" scope="col">Serial number</th>
                         <th class="text-center align-middle" scope="col">Lote</th>
-                        <th class="text-center align-middle" scope="col">Nome do usuario</th>
-                        <th class="text-center align-middle" scope="col">CPF</th>
                         <th class="text-center align-middle" scope="col">Editar</th>
                     </tr>
                 </thead>
@@ -35,18 +33,6 @@
                         <td th:text="${equipamento.modeloEquipamento.pn}" class="align-middle">...</td>
                         <td th:text="${equipamento.sn}" class="align-middle">...</td>
                         <td th:text="${equipamento.modeloEquipamento.lote}" class="align-middle">...</td>
-                        <div th:if="${equipamento.locatario}" class="align-middle">
-                            <td th:text="${equipamento.locatario.primeiroNome} + ' ' +${equipamento.locatario.sobrenome}" class="align-middle">...</td>
-                        </div>
-                        <div th:unless="${equipamento.locatario}">
-                            <td>Equipamento não emprestado</td>
-                        </div>
-                        <div th:if="${equipamento.locatario}">
-                            <td th:text="${equipamento.locatario.cpf}">...</td>
-                        </div>
-                        <div th:unless="${equipamento.locatario}">
-                            <td>Equipamento não emprestado</td>
-                        </div>
                         <td>
                             <!-- <a class="btn btn-primary btn-sm align-middle"
                                 th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Editar</a> -->
@@ -54,7 +40,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                             th:data-bs-target="'#modal1-' + ${equipamento.id}">
-                                Editar Equipamento
+                                Emprestar Equipamento
                             </button>
 
                             <!-- Modal -->
@@ -69,14 +55,14 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Tem certeza que deseja Editar o equipamento : <span class="fw-bold" th:text="${equipamento.modeloEquipamento.nomeEquipamento}">nome do usuario</span>
+                                            Tem certeza que deseja emprestar o equipamento:
                                             <span class="fw-bold" th:text="${equipamento.modeloEquipamento.nomeEquipamento}">nome do usuario</span>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-bs-dismiss="modal">Cancelar</button>
                                             <a class="btn btn-primary btn-sm align-middle"
-                                                th:href="@{editar-equipamento/(id=${equipamento.id})}" role="button">Sim</a>
+                                                th:href="@{emprestar-equipamento/(id=${equipamento.id})}" role="button">Sim</a>
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +77,6 @@
                         <th class="text-center align-middle" scope="col">Part number</th>
                         <th class="text-center align-middle" scope="col">Serial number</th>
                         <th class="text-center align-middle" scope="col">Lote</th>
-                        <th class="text-center align-middle" scope="col">Nome do usuario</th>
-                        <th class="text-center align-middle" scope="col">CPF</th>
                         <th class="text-center align-middle" scope="col">Editar</th>
                     </tr>
                 </tfoot>

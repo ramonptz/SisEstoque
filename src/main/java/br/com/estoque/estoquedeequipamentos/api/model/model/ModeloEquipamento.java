@@ -21,8 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ModeloEquipamento implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="modeloequipamento_sequence")
-    @SequenceGenerator(name="modeloequipamento_sequence", sequenceName="modeloequipamento_sequence", allocationSize=100)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nomeEquipamento;
     private String lote;

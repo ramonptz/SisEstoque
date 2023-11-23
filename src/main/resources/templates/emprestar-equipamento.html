@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Modelo Equipamento</title>
+    <div th:replace="fragmentos :: bootstrap"></div>
+
+
+</head>
+
+<body>
+    <div th:replace="fragmentos :: cabecalho"></div>
+    <div class="col-sm-9 mx-auto d-block">
+
+        <div th:if="${equipamento.id}">
+            <h1>Página para Emprestar o equipamento</h1>
+        </div>
+        <div th:unless="${equipamento.id}">
+            <h1>Página do cadastro de Equipamentos</h1>
+        </div>
+
+        <form th:object="${equipamento}" class="row g-3 needs-validation was-validated" method="POST"
+            action="/equipamento/cadastrar">
+            <input type="hidden" th:field="*{id}" th:value="${equipamento.id}">
+            <input type="hidden" th:field="${equipamento.locatario.id}" id="validationServer0" required>
+            <input type="hidden" th:field="${equipamento.modeloEquipamento.id}" id="validationServer00" required>
+            <div class="col-md-5">
+                <label class="form-label">Modelo de Equipamento</label>
+                <!-- <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
+                    th:field="*{modeloEquipamento}" required maxlength="15" minlength="1"> -->
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.nomeEquipamento}"
+                    id="validationServer01" value="" placeholder="Selecione o Modelo de Equipamento ->" required
+                    maxlength="15" minlength="1" readonly>
+
+                <div class="valid-feedback">
+                    Modelo de Equipamento válido !
+                </div>
+                <div id="validationServer01" class="invalid-feedback">
+                    Por favor, selecione um Modelo de Equipamento.
+                </div>
+
+            </div>
+
+            <div class="invalid-feedback">Errors do nome do produto</div>
+            <div class="col-md-3">
+                <label for="validationServer02" class="form-label">Lote</label>
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.lote}"
+                    id="validationServer02" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationServer02" class="form-label">Preço</label>
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.preco}"
+                    id="validationServer03" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="validationServer02" class="form-label">PN</label>
+                <input type="text" class="form-control" id="validationServer04"
+                    th:field="${equipamento.modeloEquipamento.pn}" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <label for="validationServer02" class="form-label">Locatario</label>
+                <input type="text" class="form-control" id="validationServer05" value="" th:field="*{locatario}"
+                     maxlength="15" required>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div> -->
+            <div class="col-md-5">
+                <label for="validationServer03" class="form-label">Serial Number</label>
+                <input type="text" class="form-control" id="validationServer06" value="" th:field="*{sn}" readonly>
+                <div class="valid-feedback">
+                    Este SN é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um SN.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label ">E-mail</label>
+                <input type="text" class="form-control" id="validationServer07" value="" th:field="*{locatario.email}"
+                    required>
+                <div class="valid-feedback">
+                    Este E-mail é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Usuario.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="validationServer08" value="" th:field="*{locatario.cpf}"
+                    required>
+                <div class="valid-feedback">
+                    Este CPF é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Usuario.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <br>
+                <button class="mt-2 btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalItem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                    Selecionar Usuario
+                </button>
+                <!-- Modal para selecionar o item -->
+                <div class="modal fade" id="modalItem" tabindex="-1" aria-labelledby="modalItemLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalItemLabel">Click para Selecionar um Modelo de
+                                    Equipamento</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Modelo de Equipamento</th>
+                                            <th scope="col">Modelo de Equipamento</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr th:each="usuario : ${usuarios}"
+                                            th:data-item-id="${usuario.id}"
+                                            th:data-item-nome="${usuario.email}">
+                                            <td th:text="${usuario.id}">...</td>
+                                            <td th:text="${usuario.email}">...</td>
+                                            <td>...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Emprestar Equipamento</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div th:replace="fragmentos :: rodape"></div>
+
+
+
+
+
+
+    <script>
+
+        // Obtém o elemento input
+        const inputField = document.getElementById('validationServer01');
+
+        // Adiciona um ouvinte para o evento de teclado
+        inputField.addEventListener('keypress', function (event) {
+            // Previne a ação padrão (digitar) se uma tecla for pressionada
+            event.preventDefault();
+        });
+        inputField.addEventListener('keydown', function (event) {
+            // Verifica se a tecla pressionada é o backspace ou delete
+            if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'x') {
+                event.preventDefault();
+            }
+        });
+
+        // Captura o evento de clique nos itens da lista
+        $(document).on('click', 'table tr', function () {
+            // Obtém o ID do item clicado
+            const itemId = $(this).data('item-id');
+            const itemNome = $(this).data('item-nome');
+            const itemLote = $(this).data('item-lote');
+            const itemPreco = $(this).data('item-preco');
+            const itemPn = $(this).data('item-pn');
+
+            // Define o valor do campo de input com o ID do item selecionado
+            $('#validationServer0').val(itemId);
+            $('#validationServer07').val(itemId);
+            $('#validationServer08').val(itemNome);
+            // $('#validationServer02').val(itemLote);
+            // $('#validationServer03').val(itemPreco);
+            // $('#validationServer04').val(itemPn);
+
+
+            // Fecha o modal após selecionar o item
+            $('#modalItem').modal('hide');
+        });
+    </script>
+
+</body>
+
+</html>
