@@ -2,7 +2,7 @@ package br.com.estoque.estoquedeequipamentos.api.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

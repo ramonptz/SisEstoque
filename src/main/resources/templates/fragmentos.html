@@ -97,14 +97,14 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
                     <li class="nav-item me-2">
-                        <a class="nav-link " th:classappend="${#httpServletRequest.requestURI == '/' ? 'active' : ''}"
+                        <a class="nav-link " th:classappend="${requestURI == '/' ? 'active' : ''}"
                             aria-current="page" href="/">Home</a>
                         <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link me-2  dropdown-toggle"
-                            th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/usuario') ? 'active' : ''}"
+                            th:classappend="${#strings.startsWith(requestURI, '/usuario') ? 'active' : ''}"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Usuarios
                         </a>
@@ -123,7 +123,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link me-2 dropdown-toggle "
-                            th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/equipamento') ? 'active' : ''}"
+                            th:classappend="${#strings.startsWith(requestURI, '/equipamento') ? 'active' : ''}"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Equipamentos
                         </a>
@@ -150,7 +150,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link me-2 dropdown-toggle "
-                            th:classappend="${#httpServletRequest.requestURI == '/equipamento' ? 'active' : ''}"
+                            th:classappend="${requestURI == '/equipamento' ? 'active' : ''}"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Estoque
                         </a>
@@ -171,7 +171,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link me-2 dropdown-toggle"
-                            th:classappend="${#strings.startsWith(#httpServletRequest.requestURI, '/modelo-equipamento') ? 'active' : ''}"
+                            th:classappend="${#strings.startsWith(requestURI, '/modelo-equipamento') ? 'active' : ''}"
                             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Modelo de Equipamento
                         </a>
