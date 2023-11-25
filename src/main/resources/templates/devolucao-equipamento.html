@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Modelo Equipamento</title>
+    <div th:replace="fragmentos :: bootstrap"></div>
+
+
+</head>
+
+<body>
+    <div th:replace="fragmentos :: cabecalho"></div>
+    <div class="col-sm-9 mx-auto d-block">
+
+            <h1>Página para devolução de equipamentos</h1>
+
+        <form th:object="${equipamento}" class="row g-3 needs-validation was-validated" method="POST"
+            action="/equipamento/cadastrar">
+            <input type="hidden" th:field="*{id}" th:value="${equipamento.id}">
+            <input type="hidden" th:field="${equipamento.locatario.id}" id="validationServer0" required>
+            <input type="hidden" th:field="${equipamento.modeloEquipamento.id}" id="validationServer00" required>
+            <div class="col-md-5">
+                <label class="form-label">Modelo de Equipamento</label>
+                <!-- <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
+                    th:field="*{modeloEquipamento}" required maxlength="15" minlength="1"> -->
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.nomeEquipamento}"
+                    id="validationServer01" value="" placeholder="Selecione o Modelo de Equipamento ->" required
+                    maxlength="15" minlength="1" readonly>
+
+                <div class="valid-feedback">
+                    Modelo de Equipamento válido !
+                </div>
+                <div id="validationServer01" class="invalid-feedback">
+                    Por favor, selecione um Modelo de Equipamento.
+                </div>
+
+            </div>
+
+            <div class="invalid-feedback">Errors do nome do produto</div>
+            <div class="col-md-3">
+                <label for="validationServer02" class="form-label">Lote</label>
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.lote}"
+                    id="validationServer02" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationServer02" class="form-label">Preço</label>
+                <input type="text" class="form-control" th:field="${equipamento.modeloEquipamento.preco}"
+                    id="validationServer03" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="validationServer02" class="form-label">PN</label>
+                <input type="text" class="form-control" id="validationServer04"
+                    th:field="${equipamento.modeloEquipamento.pn}" value="" readonly>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <label for="validationServer02" class="form-label">Locatario</label>
+                <input type="text" class="form-control" id="validationServer05" value="" th:field="*{locatario}"
+                     maxlength="15" required>
+                <div class="valid-feedback">
+                    Este Locatario é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Locatario.
+                </div>
+            </div> -->
+            <div class="col-md-5">
+                <label for="validationServer03" class="form-label">Serial Number</label>
+                <input type="text" class="form-control" id="validationServer06" value="" th:field="*{sn}" readonly>
+                <div class="valid-feedback">
+                    Este SN é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um SN.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label ">Nome</label>
+                <input type="text" class="form-control is-valid" id="validationServer07" th:field="${equipamento.locatario.primeiroNome}" value=""
+                autocomplete="off" readonly required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label ">sobrenome</label>
+                <input type="text" class="form-control is-valid" id="validationServer08" th:field="${equipamento.locatario.sobrenome}" value=""
+                autocomplete="off" readonly required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label">CPF</label>
+                <input type="text" class="form-control is-valid" id="validationServer09" th:field="${equipamento.locatario.cpf}" value=""
+                autocomplete="off" readonly required>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label">E-mail</label>
+                <input type="text" class="form-control is-valid" id="validationServer10" th:field="${equipamento.locatario.email}" value=""
+                autocomplete="off" readonly required>
+            </div>
+            <div class="col-md-6">
+                <label for="validationServer11" class="form-label">Estado do equipamento</label>
+                <select class="form-select" th:field="${equipamento.ativa}" id="validationServer11"  required>
+                    <option value="" disabled selected>Selecione o estado do equipamento</option>
+                    <option th:value="true" th:selected="${equipamento.ativa}">O equipamento está em condição de uso.</option>
+                    <option th:value="false" th:selected="${!equipamento.ativa}">O equipamento está com avaria.</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div th:replace="fragmentos :: rodape"></div>
+
+
+
+
+
+
+    <script>
+
+function disableInputField(inputId) {
+  const inputField = document.getElementById(inputId);
+
+  inputField.addEventListener('keypress', function (event) {
+    event.preventDefault();
+  });
+
+  inputField.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'x' || event.key === 'v') {
+      event.preventDefault();
+    }
+  });
+}
+
+// Chama a função para cada campo de entrada desejado
+disableInputField('validationServer07');
+disableInputField('validationServer08');
+disableInputField('validationServer09');
+disableInputField('validationServer10');
+
+    </script>
+
+</body>
+
+</html>

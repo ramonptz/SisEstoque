@@ -29,7 +29,7 @@
                 <label class="form-label">Modelo de Equipamento</label>
                 <!-- <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer01" value=""
                     th:field="*{modeloEquipamento}" required maxlength="15" minlength="1"> -->
-                <input  type="text" class="form-control" th:field="${equipamento.modeloEquipamento.nomeEquipamento}" id="validationServer01" value="" placeholder="Selecione o Modelo de Equipamento ->"
+                <input  type="text" class="form-control" th:field="${equipamento.modeloEquipamento.nomeEquipamento}" id="validationServer01" value="" autocomplete="off" placeholder="Selecione o Modelo de Equipamento ->"
                      required maxlength="15" minlength="1">
                         
                     <div class="valid-feedback">
@@ -93,7 +93,7 @@
             </div> -->
             <div class="col-md-4">
                 <label for="validationServer03" class="form-label">Serial Number</label>
-                <input type="text" class="form-control" id="validationServer06" value="" th:field="*{sn}" required>
+                <input type="text" class="form-control" id="validationServer06" value="" th:field="*{sn}" autocomplete="off" required>
                 <div class="valid-feedback">
                     Este SN é válido!
                 </div>

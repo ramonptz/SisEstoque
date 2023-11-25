@@ -13,6 +13,8 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
     List<Equipamento> findByAtiva(Boolean ativa);
 
     List<Equipamento> findByLocatarioIsNull();
+    
+    List<Equipamento> findByLocatarioIsNotNull();
 
 
 }

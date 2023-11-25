@@ -50,6 +50,15 @@ public class EquipamentoController {
         mv.addObject("equipamentos", equipamento);
         return mv;
     }
+    
+    @GetMapping("listar-equipamento-indisp")
+    public ModelAndView listarModeloEquipamentoIndisponivel() {
+        ModelAndView mv = new ModelAndView("listar-equipamento-indisp");
+        List<Equipamento> equipamento = repository.findByLocatarioIsNotNull();
+        
+        mv.addObject("equipamentos", equipamento);
+        return mv;
+    }
 
     @GetMapping("/cadastrar-equipamento")
     public ModelAndView cadastrar(Equipamento equipamento) {
@@ -76,8 +85,8 @@ public class EquipamentoController {
         return "redirect:listar-equipamento";
     }
 
-    @GetMapping("/emprestar-equipamento")
-    public ModelAndView emprestaEquipamento(@RequestParam(required = true) Long id){
+    @PostMapping("/emprestar-equipamento")
+    public ModelAndView emprestaEquipamento(Long id){
         ModelAndView mv = new ModelAndView("emprestar-equipamento");
         List<ModeloEquipamento> modeloDeEquipamento = modeloEquipamentoRepository.findAll();
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -87,9 +96,17 @@ public class EquipamentoController {
         return mv;
     }
 
-    @GetMapping("/editar-equipamento")
-    public ModelAndView editarEquipamento(@RequestParam(required = true) Long id){
+    @PostMapping("/editar-equipamento")
+    public ModelAndView editarEquipamento(Long id){
         ModelAndView mv = new ModelAndView("cadastrar-equipamento");
+        List<ModeloEquipamento> modeloDeEquipamento = modeloEquipamentoRepository.findAll();
+        mv.addObject("equipamento", repository.getReferenceById(id));
+        mv.addObject("modeloDeEquipamentos", modeloDeEquipamento);
+        return mv;
+    }
+    @PostMapping("/devolucao-equipamento")
+    public ModelAndView devolucaoEquipamento(Long id){
+        ModelAndView mv = new ModelAndView("devolucao-equipamento");
         List<ModeloEquipamento> modeloDeEquipamento = modeloEquipamentoRepository.findAll();
         mv.addObject("equipamento", repository.getReferenceById(id));
         mv.addObject("modeloDeEquipamentos", modeloDeEquipamento);

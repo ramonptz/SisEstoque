@@ -99,9 +99,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="validationServer03" class="form-label ">E-mail</label>
-                <input type="text" class="form-control" id="validationServer07" value="" th:field="*{locatario.email}"
-                    required>
+                <label for="validationServer03" class="form-label ">Nome</label>
+                <input type="text" class="form-control" id="validationServer07" value=""
+                autocomplete="off" required>
                 <div class="valid-feedback">
                     Este E-mail é válido!
                 </div>
@@ -111,8 +111,19 @@
             </div>
             <div class="col-md-4">
                 <label for="validationServer03" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="validationServer08" value="" th:field="*{locatario.cpf}"
-                    required>
+                <input type="text" class="form-control" id="validationServer08" value=""
+                autocomplete="off" required>
+                <div class="valid-feedback">
+                    Este CPF é válido!
+                </div>
+                <div id="validationServer02" class="invalid-feedback">
+                    Por favor, Selecione um Usuario.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationServer03" class="form-label">E-mail</label>
+                <input type="text" class="form-control" id="validationServer09" value=""
+                autocomplete="off" required>
                 <div class="valid-feedback">
                     Este CPF é válido!
                 </div>
@@ -146,18 +157,25 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Modelo de Equipamento</th>
-                                            <th scope="col">Modelo de Equipamento</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">E-mail</th>
+                                            <th scope="col">CPF</th>
+                                            <th scope="col">TEL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <tr th:each="usuario : ${usuarios}"
                                             th:data-item-id="${usuario.id}"
-                                            th:data-item-nome="${usuario.email}">
-                                            <td th:text="${usuario.id}">...</td>
-                                            <td th:text="${usuario.email}">...</td>
-                                            <td>...</td>
+                                            th:data-item-nome="${usuario.primeiroNome} + ' ' +${usuario.sobrenome}"
+                                            th:data-item-email="${usuario.email}"
+                                            th:data-item-cpf="${usuario.cpf}"
+                                            th:data-item-telefone="${usuario.telefone}">
+                                            <td th:text="${usuario.id}" class="align-middle">...</td>
+                                            <td th:text="${usuario.primeiroNome} + ' ' +${usuario.sobrenome}" class="align-middle">...</td>
+                                            <td th:text="${usuario.email}" class="align-middle">...</td>
+                                            <td th:text="${usuario.cpf}" class="align-middle">...</td>
+                                            <td th:text="${usuario.telefone}" class="align-middle">...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -183,34 +201,40 @@
 
     <script>
 
-        // Obtém o elemento input
-        const inputField = document.getElementById('validationServer01');
+function disableInputField(inputId) {
+  const inputField = document.getElementById(inputId);
 
-        // Adiciona um ouvinte para o evento de teclado
-        inputField.addEventListener('keypress', function (event) {
-            // Previne a ação padrão (digitar) se uma tecla for pressionada
-            event.preventDefault();
-        });
-        inputField.addEventListener('keydown', function (event) {
-            // Verifica se a tecla pressionada é o backspace ou delete
-            if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'x') {
-                event.preventDefault();
-            }
-        });
+  inputField.addEventListener('keypress', function (event) {
+    event.preventDefault();
+  });
+
+  inputField.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'x' || event.key === 'v') {
+      event.preventDefault();
+    }
+  });
+}
+
+// Chama a função para cada campo de entrada desejado
+disableInputField('validationServer07');
+disableInputField('validationServer08');
+disableInputField('validationServer09');
+
 
         // Captura o evento de clique nos itens da lista
         $(document).on('click', 'table tr', function () {
             // Obtém o ID do item clicado
             const itemId = $(this).data('item-id');
             const itemNome = $(this).data('item-nome');
-            const itemLote = $(this).data('item-lote');
-            const itemPreco = $(this).data('item-preco');
-            const itemPn = $(this).data('item-pn');
+            const itemEmail = $(this).data('item-email');
+            const itemCpf = $(this).data('item-cpf');
+            // const itemPn = $(this).data('item-pn');
 
             // Define o valor do campo de input com o ID do item selecionado
             $('#validationServer0').val(itemId);
-            $('#validationServer07').val(itemId);
-            $('#validationServer08').val(itemNome);
+            $('#validationServer07').val(itemNome);
+            $('#validationServer08').val(itemCpf);
+            $('#validationServer09').val(itemEmail);
             // $('#validationServer02').val(itemLote);
             // $('#validationServer03').val(itemPreco);
             // $('#validationServer04').val(itemPn);

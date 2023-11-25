@@ -34,6 +34,7 @@ public class Equipamento implements Serializable {
     private Usuario locatario;
     // private Historico historico;
     private Boolean ativa = true;
+    //serial number
     private String sn;
 
     // @ManyToOne(targetEntity = ModeloEquipamento.class, fetch = FetchType.LAZY)

@@ -40,7 +40,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                             th:data-bs-target="'#modal1-' + ${equipamento.id}">
-                                Emprestar Equipamento
+                                Devolução do Equipamento
                             </button>
 
                             <!-- Modal -->
@@ -55,17 +55,20 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Tem certeza que deseja emprestar o equipamento:
+                                            Tem certeza que deseja realizar a devolução do equipamento:
                                             <span class="fw-bold" th:text="${equipamento.modeloEquipamento.nomeEquipamento}">nome do usuario</span>
+                                            <br>
+                                             SN:
+                                            <span class="fw-bold" th:text="${equipamento.sn}">nome do usuario</span>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-bs-dismiss="modal">Cancelar</button>
                                             <!-- <a class="btn btn-primary btn-sm align-middle" th:href="@{emprestar-equipamento/(id=${equipamento.id})}" role="button">Sim</a> -->
 
-                                                <form th:action="@{emprestar-equipamento}" th:method="POST">
+                                                <form th:action="@{devolucao-equipamento}" th:method="POST">
                                                     <input type="hidden" name="id" th:value="${equipamento.id}">
-                                                    <button type="submit" class="btn btn-primary btn-sm align-middle">Emprestar</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm align-middle">Devolução</button>
                                             </form>
                                         </div>
                                         <!-- <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>

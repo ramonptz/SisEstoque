@@ -19,7 +19,7 @@
         <form th:object="${modeloEquipamento}" class="row g-3 needs-validation was-validated" method="POST" id="01"
             action="/modelo-equipamento/cadastrar" required>
             <div class="col-md-4">
-                <label for="validationServer01" class="form-label">Nome do Modelo do Equipamento</label>
+                <label for="validationServer01" class="form-label">Modelo do Equipamento</label>
                 <input type="text" class="form-control" id="validationServer01" value="" th:field="*{nomeEquipamento}" required>
                 <div class="valid-feedback">
                     Nome válido!
@@ -28,7 +28,8 @@
                     Por favor, insira o nome do Modelo.
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4
+            ">
                 <label for="validationServer02" class="form-label">Part Number</label>
                 <input th:errorclass="is-invalid" type="text" class="form-control" id="validationServer02" value=""
                     th:field="*{pn}" required>
@@ -78,7 +79,7 @@
         </form>
     </div>
 
-
+    <div th:replace="fragmentos :: rodape"></div>
 
     <script>
 

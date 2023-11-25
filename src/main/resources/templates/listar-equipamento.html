@@ -42,23 +42,27 @@
                             <td>Equipamento não emprestado</td>
                         </div>
                         <div th:if="${equipamento.locatario}">
-                            <td th:text="${equipamento.locatario.cpf}">...</td>
+                            <td th:text="${equipamento.locatario.cpf}" class="align-middle">...</td>
                         </div>
                         <div th:unless="${equipamento.locatario}">
-                            <td>Equipamento não emprestado</td>
+                            <td class="align-middle">Equipamento não emprestado</td>
                         </div>
-                        <td>
+                        <td class="align-middle">
                             <!-- <a class="btn btn-primary btn-sm align-middle"
                                 th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Editar</a> -->
                             <!-- <a class="btn btn-danger btn-sm align-middle" th:href="@{editar-usuario/(id=${usuario.id})}" role="button">Excluir</a> -->
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                            th:data-bs-target="'#modal1-' + ${equipamento.id}">
-                                Editar Equipamento
-                            </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" th:id="'modal1-' + ${equipamento.id}" data-bs-backdrop="static"
+                            <div th:if="${equipamento.locatario}">
+                                Equipamento emprestado não pode ser editado!
+                            </div>
+                            <div th:unless="${equipamento.locatario}">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                th:data-bs-target="'#modal1-' + ${equipamento.id}">
+                                    Editar Equipamento
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" th:id="'modal1-' + ${equipamento.id}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -75,12 +79,17 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <a class="btn btn-primary btn-sm align-middle"
-                                                th:href="@{editar-equipamento/(id=${equipamento.id})}" role="button">Sim</a>
+                                                <form th:action="@{editar-equipamento}" th:method="POST">
+                                                    <input type="hidden" name="id" th:value="${equipamento.id}">
+                                                    <button type="submit" class="btn btn-primary btn-sm align-middle">Editar</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                                Equipamento Emprestado não pode ser editado !
                             </div>
+                            </div>
+                            
                         </td>
                     </tr>
                 </tbody>
@@ -100,6 +109,8 @@
             
         </div>
     </div>
+
+    <div th:replace="fragmentos :: rodape"></div>
 
     <script>
         new DataTable('#tabela-equipamentos');
