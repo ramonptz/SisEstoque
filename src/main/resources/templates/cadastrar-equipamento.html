@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Modelo Equipamento</title>
-    <div th:replace="fragmentos :: bootstrap"></div>
+    <div th:replace="~{fragmentos :: bootstrap}"></div>
 
 
 </head>
 
 <body>
-    <div th:replace="fragmentos :: cabecalho"></div>
+    <div th:replace="~{fragmentos :: cabecalho}"></div>
     <div class="col-sm-9 mx-auto d-block">
 
         <div th:if="${equipamento.id}">
@@ -107,7 +107,7 @@
         </form>
     </div>
     </div>
-    <div th:replace="fragmentos :: rodape"></div>
+    <div th:replace="~{fragmentos :: rodape}"></div>
 
 
 

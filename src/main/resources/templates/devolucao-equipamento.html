@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Modelo Equipamento</title>
-    <div th:replace="fragmentos :: bootstrap"></div>
+    <div th:replace="~{fragmentos :: bootstrap}"></div>
 
 
 </head>
 
 <body>
-    <div th:replace="fragmentos :: cabecalho"></div>
+    <div th:replace="~{fragmentos :: cabecalho}"></div>
     <div class="col-sm-9 mx-auto d-block">
 
             <h1>Página para devolução de equipamentos</h1>
@@ -19,7 +19,7 @@
         <form th:object="${equipamento}" class="row g-3 needs-validation was-validated" method="POST"
             action="/equipamento/cadastrar">
             <input type="hidden" th:field="*{id}" th:value="${equipamento.id}">
-            <input type="hidden" th:field="${equipamento.locatario.id}" id="validationServer0" required>
+            <input type="hidden" name="locatario.id" value="0" id="validationServer0" required>
             <input type="hidden" th:field="${equipamento.modeloEquipamento.id}" id="validationServer00" required>
             <div class="col-md-5">
                 <label class="form-label">Modelo de Equipamento</label>
@@ -121,10 +121,13 @@
                     <option th:value="false" th:selected="${!equipamento.ativa}">O equipamento está com avaria.</option>
                 </select>
             </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Devolver Equipamento</button>
+            </div>
         </form>
     </div>
     </div>
-    <div th:replace="fragmentos :: rodape"></div>
+    <div th:replace="~{fragmentos :: rodape}"></div>
 
 
 

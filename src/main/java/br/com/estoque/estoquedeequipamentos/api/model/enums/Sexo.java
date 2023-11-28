@@ -1,4 +1,4 @@
-package br.com.estoque.estoquedeequipamentos.api.enums;
+package br.com.estoque.estoquedeequipamentos.api.model.enums;
 
 public enum Sexo {
     

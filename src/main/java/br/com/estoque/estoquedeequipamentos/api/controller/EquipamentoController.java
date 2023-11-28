@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.estoque.estoquedeequipamentos.api.model.model.Equipamento;
-import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
-import br.com.estoque.estoquedeequipamentos.api.model.model.Usuario;
+import br.com.estoque.estoquedeequipamentos.api.model.Equipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.ModeloEquipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.Usuario;
 import br.com.estoque.estoquedeequipamentos.api.repository.EquipamentoRepository;
 import br.com.estoque.estoquedeequipamentos.api.repository.ModeloEquipamentoRepository;
 import br.com.estoque.estoquedeequipamentos.api.repository.UsuarioRepository;
@@ -73,6 +73,10 @@ public class EquipamentoController {
         
         if (resultado.hasErrors()) {
             return "cadastrar-equipamento";
+        }
+
+        if(equipamento.getLocatario().getId() == 0){
+            equipamento.setLocatario(null);
         }
 
         // if(equipamento.getLocatario() != null){

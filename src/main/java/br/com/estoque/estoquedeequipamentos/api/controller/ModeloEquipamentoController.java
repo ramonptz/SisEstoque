@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.estoque.estoquedeequipamentos.api.model.model.ModeloEquipamento;
-import br.com.estoque.estoquedeequipamentos.api.model.model.Usuario;
+import br.com.estoque.estoquedeequipamentos.api.model.ModeloEquipamento;
+import br.com.estoque.estoquedeequipamentos.api.model.Usuario;
 import br.com.estoque.estoquedeequipamentos.api.repository.ModeloEquipamentoRepository;
 import lombok.AllArgsConstructor;
 

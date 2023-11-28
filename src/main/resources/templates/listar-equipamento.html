@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista dos Modelos de Equipamentos</title>
-    <div th:replace="fragmentos :: bootstrap"></div>
+    <div th:replace="~{fragmentos :: bootstrap}"></div>
 
 
 </head>
 
 <body>
-    <div th:replace="fragmentos :: cabecalho"></div>
+    <div th:replace="~{fragmentos :: cabecalho}"></div>
     <div class="container-fluid">
         <div class="table-responsive col-sm-9 mx-auto d-block" >
             <h1>Se tudo der certo isso daqui é a listagem de modelo equipamento</h1>
@@ -110,7 +110,7 @@
         </div>
     </div>
 
-    <div th:replace="fragmentos :: rodape"></div>
+    <div th:replace="~{fragmentos :: rodape}"></div>
 
     <script>
         new DataTable('#tabela-equipamentos');

@@ -1,4 +1,4 @@
-package br.com.estoque.estoquedeequipamentos.api.model.model;
+package br.com.estoque.estoquedeequipamentos.api.model;
 
 import java.io.Serializable;
 
