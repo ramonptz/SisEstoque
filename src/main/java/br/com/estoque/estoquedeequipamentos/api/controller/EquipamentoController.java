@@ -75,8 +75,10 @@ public class EquipamentoController {
             return "cadastrar-equipamento";
         }
 
-        if(equipamento.getLocatario().getId() == 0){
-            equipamento.setLocatario(null);
+        if(equipamento.getLocatario() != null){
+            if(equipamento.getLocatario().getId() == 0){
+                equipamento.setLocatario(null);
+            }
         }
 
         // if(equipamento.getLocatario() != null){
